@@ -5,8 +5,8 @@
 </template>
 
 <script setup lang="ts">
-import { inject } from "vue";
-const user = inject('user')
+import useUserCard from "@/utils/useUserCard";
+const [{ user }] = useUserCard()
 </script>
 
 <style scoped>

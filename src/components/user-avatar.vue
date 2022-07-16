@@ -11,7 +11,9 @@
 </template>
 
 <script setup lang="ts">
-import { inject } from "vue";
-const user = inject('user');
-const isFetching = inject('isFetching');
+
+import useUserCard from "@/utils/useUserCard";
+const [{ user, isFetching }] = useUserCard()
+
+
 </script>

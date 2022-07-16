@@ -1,4 +1,4 @@
-import { onMounted, provide, ref } from "vue";
+import { onMounted, ref } from "vue";
 import Random from "./random";
 
 function useFetchUser() {

@@ -22,5 +22,6 @@ interface Props {
 
 const { variant } = defineProps<Props>();
 
-const fetchUser = inject("fetchUser");
+import useUserCard from "@/utils/useUserCard";
+const [_, { fetchUser}] = useUserCard()
 </script>
