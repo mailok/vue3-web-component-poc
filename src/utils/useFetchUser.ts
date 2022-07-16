@@ -8,10 +8,11 @@ function useFetchUser() {
 
   async function fetchUser() {
     isFetching.value = true;
+    error.value = false;
     try {
       user.value = await Random.user();
     } catch (err) {
-      error.value = false;
+      error.value = true;
     }
     isFetching.value = false;
   }
