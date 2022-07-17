@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --color-user-name: theme("colors.slate.700");
+    --size-user-name: theme("spacing.8");
+}

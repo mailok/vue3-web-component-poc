@@ -14,9 +14,4 @@ const { data } = user.useQuery();
 
 <style>
 @import "../assets/main.css";
-
-:root {
-  --color-user-name: theme("colors.slate.700");
-  --size-user-name: theme("spacing.8");
-}
 </style>

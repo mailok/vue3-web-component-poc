@@ -1,6 +1,6 @@
 <template>
   <div class="text-center p-2">
-    <button @click="fetch" :class="variants[props.variant || 'outline']">
+    <button @click="fetchNewUser" :class="variants[props.variant || 'outline']">
       <slot></slot>
     </button>
   </div>
@@ -25,7 +25,13 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const { fetch } = user.useQuery();
+const { fetch, isFetching } = user.useQuery();
+
+async function fetchNewUser() {
+  if (!isFetching.value) {
+    await fetch();
+  }
+}
 </script>
 <style>
 @import "../assets/main.css";
