@@ -5,7 +5,7 @@
     <div class="flex flex-wrap justify-center">
       <div
         v-if="isFetching"
-        class="animate-pulse flex w-full px-4 h-32 bg-slate-200 rounded"
+        class="animate-pulse flex w-full px-4 h-20 bg-slate-200 rounded"
       ></div>
       <div v-else class="w-full px-4">
         <p class="font-light leading-relaxed text-slate-600 mb-4">
@@ -20,7 +20,10 @@
 </template>
 
 <script setup lang="ts">
-import useUserCard from "@/utils/useUserCard";
+import user from "@/utils/user";
 
-const [{ isFetching }] = useUserCard();
+const { isFetching } = user.useQuery();
 </script>
+<style>
+@import "../assets/main.css";
+</style>

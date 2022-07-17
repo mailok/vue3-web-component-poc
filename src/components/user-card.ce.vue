@@ -29,7 +29,7 @@
     </svg>
     <p class="text-3xl">Somthing went wrong!</p>
     <button
-      @click="fetchUser"
+      @click="fetch"
       class="px-8 py-3 font-semibold underline rounded dark:bg-violet-400 dark:text-gray-900"
     >
       Try again
@@ -37,21 +37,23 @@
   </div>
 </template>
 <script setup lang="ts">
-import useFetchUser from "@/utils/useFetchUser";
-import { watch, defineEmits, provide } from "vue";
+import user from "@/utils/user";
+import { watch, defineEmits, onMounted } from "vue";
 
-const { user, error, isFetching, fetchUser } = useFetchUser();
+const { error, fetch, data } = user.useQuery();
 
-provide("user", user);
-provide("fetchUser", fetchUser);
-provide("isFetching", isFetching);
-provide("error", error);
+onMounted(fetch);
 
 const emit = defineEmits<{
   (e: "userFetched", user: any): void;
 }>();
 
-watch(user, (user, prevUser) => {
-  emit("userFetched", user);
+watch(data, (user, prevUser) => {
+  if (data.value) {
+    emit("userFetched", user);
+  }
 });
 </script>
+<style>
+@import "../assets/main.css";
+</style>

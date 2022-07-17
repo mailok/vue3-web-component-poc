@@ -1,6 +1,6 @@
 <template>
   <div class="text-center p-2">
-    <button @click="fetchUser" :class="variants[props.variant || 'outline']">
+    <button @click="fetch" :class="variants[props.variant || 'outline']">
       <slot></slot>
     </button>
   </div>
@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 import { defineProps } from "vue";
-import useUserCard from "@/utils/useUserCard";
+import user from "@/utils/user";
 
 type Variant = "outline" | "filled";
 
@@ -25,5 +25,8 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const [_, { fetchUser }] = useUserCard();
+const { fetch } = user.useQuery();
 </script>
+<style>
+@import "../assets/main.css";
+</style>

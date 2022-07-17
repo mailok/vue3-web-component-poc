@@ -1,4 +1,3 @@
-/*
 import WebComponent from "@/utils/web-component";
 import "./assets/main.css";
 import UserCard from "./components/user-card.ce.vue";
@@ -23,7 +22,7 @@ WebComponent.register([
   { component: UserFetchButton, name: "user-fetch-button" },
 ]);
 
-<!--<user-card>
+/*<user-card>
   <user-header>
     <user-avatar></user-avatar>
   </user-header>
@@ -34,10 +33,9 @@ WebComponent.register([
   </user-details>
   <user-bio></user-bio>
   <user-fetch-button>Fetch User</user-fetch-button>
-</user-card>-->
-*/
+</user-card>*/
 
-import { createApp } from "vue";
+/*import { createApp } from "vue";
 import App from "./App.vue";
 import "./assets/main.css";
-createApp(App).mount("#app");
+createApp(App).mount("#app");*/

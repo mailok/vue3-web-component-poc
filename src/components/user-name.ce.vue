@@ -2,17 +2,19 @@
   <h3
     class="text-[length:var(--size-user-name)] text-[color:var(--color-user-name)] font-bold leading-normal mb-1"
   >
-    {{ user?.name }}
+    {{ data?.name }}
   </h3>
 </template>
 
 <script setup lang="ts">
-import useUserCard from "@/utils/useUserCard";
+import user from "@/utils/user";
 
-const [{ user }] = useUserCard();
+const { data } = user.useQuery();
 </script>
 
 <style>
+@import "../assets/main.css";
+
 :root {
   --color-user-name: theme("colors.slate.700");
   --size-user-name: theme("spacing.8");

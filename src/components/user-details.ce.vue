@@ -15,7 +15,10 @@
   </div>
 </template>
 <script setup lang="ts">
-import useUserCard from "@/utils/useUserCard";
+import user from "@/utils/user";
 
-const [{ isFetching }] = useUserCard();
+const { isFetching } = user.useQuery();
 </script>
+<style>
+@import "../assets/main.css";
+</style>

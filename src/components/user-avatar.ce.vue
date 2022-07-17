@@ -10,7 +10,7 @@
     </div>
     <img
       v-else
-      :src="user?.avatar"
+      :src="data?.avatar"
       class="shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-16 lg:-ml-16 max-w-[150px]"
       alt="profile-image"
     />
@@ -18,7 +18,10 @@
 </template>
 
 <script setup lang="ts">
-import useUserCard from "@/utils/useUserCard";
+import user from "@/utils/user";
 
-const [{ user, isFetching }] = useUserCard();
+const { data, isFetching } = user.useQuery();
 </script>
+<style>
+@import "../assets/main.css";
+</style>
