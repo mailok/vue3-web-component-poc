@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="!error"
-    class="relative max-w-md mx-auto md:max-w-2xl mt-6 min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-16 px-6">
+    :class="rootClasses">
     <slot></slot>
   </div>
   <div
@@ -38,9 +38,13 @@
 </template>
 <script setup lang="ts">
 import user from "@/utils/user";
-import { watch, defineEmits, onMounted } from "vue";
+import { watch, defineEmits, onMounted, defineProps } from "vue";
 
 const { error, fetch, data } = user.useQuery();
+
+const props = defineProps<{class?: string}>();
+
+const rootClasses = `relative max-w-md mx-auto md:max-w-2xl mt-6 min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-16 px-6 ${props.class || ''}`;
 
 onMounted(fetch);
 

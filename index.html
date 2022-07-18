@@ -13,7 +13,7 @@
         &#45;&#45;size-user-name: 20px;
     }
 </style>-->
-<user-card>
+<user-card id="user-card" class="some-css-class">
   <user-header>
     <user-avatar></user-avatar>
   </user-header>
@@ -26,5 +26,10 @@
   <user-fetch-button>Fetch User</user-fetch-button>
 </user-card>
 <script type="module" src="/src/main.ts"></script>
+<script>
+  document.getElementById("user-card").addEventListener("userFetched", (event) => {
+    console.log('New Fetched:', event);
+  });
+</script>
 </body>
 </html>
