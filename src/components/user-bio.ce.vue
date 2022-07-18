@@ -24,6 +24,6 @@ import user from "@/utils/user";
 
 const { isFetching } = user.useQuery();
 </script>
-<style>
+<style scoped>
 @import "../assets/main.css";
 </style>

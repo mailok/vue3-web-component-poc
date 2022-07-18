@@ -33,6 +33,6 @@ async function fetchNewUser() {
   }
 }
 </script>
-<style>
+<style scoped>
 @import "../assets/main.css";
 </style>

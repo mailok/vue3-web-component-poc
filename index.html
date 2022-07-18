@@ -9,9 +9,10 @@
 <body>
 <!--<style>
     :root {
-        &#45;&#45;color-user-name: red;
-        &#45;&#45;size-user-name: 20px;
+        --color-user-name: rebeccapurple;
+        --size-user-name: 50px;
     }
+    .some-css-class {}
 </style>-->
 <user-card id="user-card" class="some-css-class">
   <user-header>
@@ -23,7 +24,8 @@
     <user-country></user-country>
   </user-details>
   <user-bio></user-bio>
-  <user-fetch-button>Fetch User</user-fetch-button>
+  <!-- outline | filled-->
+  <user-fetch-button variant="filled">Fetch User</user-fetch-button>
 </user-card>
 <script type="module" src="/src/main.ts"></script>
 <script>

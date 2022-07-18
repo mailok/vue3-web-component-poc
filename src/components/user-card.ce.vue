@@ -58,6 +58,6 @@ watch(data, (user, prevUser) => {
   }
 });
 </script>
-<style>
+<style scoped>
 @import "../assets/main.css";
 </style>
