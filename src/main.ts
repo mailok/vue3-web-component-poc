@@ -22,19 +22,6 @@ WebComponent.register([
   { component: UserFetchButton, name: "user-fetch-button" },
 ]);
 
-/*<user-card>
-  <user-header>
-    <user-avatar></user-avatar>
-  </user-header>
-  <user-statistics />
-  <user-details>
-    <user-name></user-name>
-    <user-country></user-country>
-  </user-details>
-  <user-bio></user-bio>
-  <user-fetch-button>Fetch User</user-fetch-button>
-</user-card>*/
-
 /*import { createApp } from "vue";
 import App from "./App.vue";
 import "./assets/main.css";

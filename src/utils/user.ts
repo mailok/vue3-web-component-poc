@@ -1,25 +1,26 @@
-import { ref } from "vue";
+import { reactive, toRefs } from "vue";
 import Random from "@/utils/random";
+import type { User } from "@/utils/random";
 
-const query = {
-  data: ref<any>(null),
-  isFetching: ref<boolean>(false),
-  error: ref<any>(false),
-};
+const query = reactive({
+  data: null as User | null,
+  isFetching: false,
+  error: false,
+});
 
 function useQuery() {
   async function fetch() {
-    query.isFetching.value = true;
-    query.error.value = false;
+    query.isFetching = true;
+    query.error = false;
     try {
-      query.data.value = await Random.user();
+      query.data = await Random.user();
     } catch (err) {
-      query.error.value = true;
+      query.error = true;
     }
-    query.isFetching.value = false;
+    query.isFetching = false;
   }
 
-  return { fetch, ...query };
+  return { ...toRefs(query), fetch };
 }
 
 export default { useQuery };

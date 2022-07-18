@@ -1,8 +1,17 @@
+export type User = {
+  name: string;
+  avatar: string;
+  location: string;
+  photos: number;
+  followers: number;
+  following: number;
+};
+
 function number(min = 100, max = 5000) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-async function user() {
+async function user(): Promise<User | null> {
   const userData = await fetch(
     "https://randomuser.me/api/?inc=name,picture,location"
   ).then((response) => response.json());
@@ -24,7 +33,7 @@ async function user() {
     };
   }
 
-  return {};
+  return null;
 }
 
 export default { user, number };
