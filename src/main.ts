@@ -1,6 +1,6 @@
-import WebComponent from "@/utils/web-component";
+// import WebComponent from "@/utils/web-component";
 import "./assets/main.css";
-import UserCard from "./components/user-card.ce.vue";
+/*import UserCard from "./components/user-card.ce.vue";
 import UserHeader from "./components/user-header.ce.vue";
 import UserAvatar from "./components/user-avatar.ce.vue";
 import UserDetails from "./components/user-details.ce.vue";
@@ -20,9 +20,9 @@ WebComponent.register([
   { component: UserCountry, name: "user-country" },
   { component: UserBio, name: "user-bio" },
   { component: UserFetchButton, name: "user-fetch-button" },
-]);
+]);*/
 
-/*import { createApp } from "vue";
+import { createApp } from "vue";
 import App from "./App.vue";
 import "./assets/main.css";
-createApp(App).mount("#app");*/
+createApp(App).mount("#app");

@@ -1,6 +1,4 @@
 <template>
-  <div v-if="true" class="mt-2 flex flex-col gap-1 items-center justify-center">
-  </div>
   <div class="py-6 border-t border-slate-200 text-center">
     <div class="flex flex-wrap justify-center">
       <div
