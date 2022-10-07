@@ -10,7 +10,7 @@ import {
   Subject,
 } from "rxjs";
 
-const defaultQuery = {
+const defaultValue = {
   data: null,
   isFetching: true,
   error: null,
@@ -19,7 +19,7 @@ const defaultQuery = {
 function toQuery(user: User | null) {
   return { data: user, isFetching: false, error: null };
 }
-function toErrorQuery(error: any) {
+function toErrorQuery() {
   return of({ data: null, isFetching: false, error: true });
 }
 
@@ -29,7 +29,7 @@ const query$ = fetch$.pipe(
   exhaustMap(() =>
     Random.user$.pipe(
       map(toQuery),
-      startWith(defaultQuery),
+      startWith(defaultValue),
       catchError(toErrorQuery)
     )
   ),
