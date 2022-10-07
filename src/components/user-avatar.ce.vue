@@ -1,7 +1,7 @@
 <template>
   <div class="relative">
     <div
-      v-if="isFetching"
+      v-if="query?.isFetching"
       class="
         animate-pulse align-middle border-none absolute -m-16 -ml-16 lg:-ml-16
       "
@@ -10,7 +10,7 @@
     </div>
     <img
       v-else
-      :src="data?.avatar"
+      :src="query?.data?.avatar"
       class="shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-16 lg:-ml-16 max-w-[150px]"
       alt="profile-image"
     />
@@ -18,9 +18,10 @@
 </template>
 
 <script setup lang="ts">
-import user from "@/utils/user";
+import User from "@/utils/user";
+import { useObservable } from "@vueuse/rxjs";
 
-const { data, isFetching } = user.useQuery();
+const query = useObservable(User.query$);
 </script>
 <style scoped>
 @import "../assets/main.css";

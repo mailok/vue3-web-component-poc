@@ -1,26 +1,43 @@
-import { reactive, toRefs } from "vue";
 import Random from "@/utils/random";
 import type { User } from "@/utils/random";
+import {
+  catchError,
+  exhaustMap,
+  map,
+  of,
+  share,
+  startWith,
+  Subject,
+} from "rxjs";
 
-const query = reactive({
-  data: null as User | null,
-  isFetching: false,
-  error: false,
-});
+const defaultQuery = {
+  data: null,
+  isFetching: true,
+  error: null,
+};
 
-function useQuery() {
-  async function fetch() {
-    query.isFetching = true;
-    query.error = false;
-    try {
-      query.data = await Random.user();
-    } catch (err) {
-      query.error = true;
-    }
-    query.isFetching = false;
-  }
-
-  return { ...toRefs(query), fetch };
+function toQuery(user: User | null) {
+  return { data: user, isFetching: false, error: null };
+}
+function toErrorQuery(error: any) {
+  return of({ data: null, isFetching: false, error: true });
 }
 
-export default { useQuery };
+const fetch$ = new Subject();
+
+const query$ = fetch$.pipe(
+  exhaustMap(() =>
+    Random.user$.pipe(
+      map(toQuery),
+      startWith(defaultQuery),
+      catchError(toErrorQuery)
+    )
+  ),
+  share()
+);
+
+function fetch() {
+  fetch$.next(null);
+}
+
+export default { query$, fetch };

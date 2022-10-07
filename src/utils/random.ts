@@ -1,3 +1,6 @@
+import { fromFetch } from "rxjs/internal/observable/dom/fetch";
+import { switchMap, map } from "rxjs";
+
 export type User = {
   name: string;
   avatar: string;
@@ -7,15 +10,17 @@ export type User = {
   following: number;
 };
 
+const END_POINT = "https://randomuser.me/api/?inc=name,picture,location";
+
 function number(min = 100, max = 5000) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-async function user(): Promise<User | null> {
-  const userData = await fetch(
-    "https://randomuser.me/api/?inc=name,picture,location"
-  ).then((response) => response.json());
+function toJson$(response: Response) {
+  return response.json();
+}
 
+function toUser(userData: any): User | null {
   if (
     userData &&
     userData.results &&
@@ -36,4 +41,6 @@ async function user(): Promise<User | null> {
   return null;
 }
 
-export default { user, number };
+const user$ = fromFetch(END_POINT).pipe(switchMap(toJson$), map(toUser));
+
+export default { user$ };

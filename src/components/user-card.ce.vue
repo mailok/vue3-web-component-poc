@@ -1,11 +1,11 @@
 <template>
   <div
-    v-if="!error"
+    v-if="!query?.error"
     :class="rootClasses">
     <slot></slot>
   </div>
   <div
-    v-else-if="error"
+    v-else-if="query?.error"
     class="container flex flex-col items-center justify-center px-5 mx-auto my-8 space-y-8 text-center sm:max-w-md"
   >
     <svg
@@ -29,7 +29,7 @@
     </svg>
     <p class="text-3xl">Somthing went wrong!</p>
     <button
-      @click="fetch"
+      @click="User.fetch"
       class="px-8 py-3 font-semibold underline rounded dark:bg-violet-400 dark:text-gray-900"
     >
       Try again
@@ -37,26 +37,19 @@
   </div>
 </template>
 <script setup lang="ts">
-import user from "@/utils/user";
-import { watch, defineEmits, onMounted, defineProps } from "vue";
+import User from "@/utils/user";
+import { onMounted, defineProps } from "vue";
+import { useObservable } from "@vueuse/rxjs";
 
-const { error, fetch, data } = user.useQuery();
+const props = defineProps<{ class?: string }>();
+const rootClasses = `relative max-w-md mx-auto md:max-w-2xl mt-6 min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-16 px-6 ${props.class || ""}`;
 
-const props = defineProps<{class?: string}>();
+const query = useObservable(User.query$);
 
-const rootClasses = `relative max-w-md mx-auto md:max-w-2xl mt-6 min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-16 px-6 ${props.class || ''}`;
 
-onMounted(fetch);
+onMounted(User.fetch);
 
-const emit = defineEmits<{
-  (e: "userFetched", user: any): void;
-}>();
 
-watch(data, (user, prevUser) => {
-  if (data.value) {
-    emit("userFetched", user);
-  }
-});
 </script>
 <style scoped>
 @import "../assets/main.css";

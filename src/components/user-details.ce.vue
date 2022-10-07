@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="isFetching"
+    v-if="query?.isFetching"
     class="mt-2 flex flex-col gap-1 items-center justify-center"
   >
     <div
@@ -15,9 +15,10 @@
   </div>
 </template>
 <script setup lang="ts">
-import user from "@/utils/user";
+import User from "@/utils/user";
+import { useObservable } from "@vueuse/rxjs";
 
-const { isFetching } = user.useQuery();
+const query = useObservable(User.query$);
 </script>
 <style scoped>
 @import "../assets/main.css";

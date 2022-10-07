@@ -2,7 +2,7 @@
   <div class="py-6 border-t border-slate-200 text-center">
     <div class="flex flex-wrap justify-center">
       <div
-        v-if="isFetching"
+        v-if="query?.isFetching"
         class="animate-pulse flex w-full px-4 h-20 bg-slate-200 rounded"
       ></div>
       <div v-else class="w-full px-4">
@@ -18,9 +18,10 @@
 </template>
 
 <script setup lang="ts">
-import user from "@/utils/user";
+import User from "@/utils/user";
+import { useObservable } from "@vueuse/rxjs";
 
-const { isFetching } = user.useQuery();
+const query = useObservable(User.query$);
 </script>
 <style scoped>
 @import "../assets/main.css";
