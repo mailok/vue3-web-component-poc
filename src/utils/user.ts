@@ -1,10 +1,12 @@
-import Random from "@/utils/random";
 import type { User } from "@/utils/random";
+import API from "@/utils/random";
 import {
   catchError,
   exhaustMap,
   map,
+  Observable,
   of,
+  pipe,
   share,
   startWith,
   Subject,
@@ -23,11 +25,15 @@ function toErrorQuery() {
   return of({ data: null, isFetching: false, error: true });
 }
 
-const fetch$ = new Subject();
+function oneAtTime(observable: Observable<any>) {
+  return pipe(exhaustMap(() => observable));
+}
 
-const query$ = fetch$.pipe(
-  exhaustMap(() =>
-    Random.user$.pipe(
+const source$ = new Subject<void>();
+
+const query$ = source$.pipe(
+  oneAtTime(
+    API.user$.pipe(
       map(toQuery),
       startWith(defaultValue),
       catchError(toErrorQuery)
@@ -37,7 +43,7 @@ const query$ = fetch$.pipe(
 );
 
 function fetch() {
-  fetch$.next(null);
+  source$.next();
 }
 
 export default { query$, fetch };
