@@ -1,7 +1,8 @@
 <template>
   <div
     v-if="!query?.error"
-    :class="rootClasses">
+    :class="rootClasses"
+  >
     <slot></slot>
   </div>
   <div
@@ -38,11 +39,11 @@
 </template>
 <script setup lang="ts">
 import User from "@/utils/user";
-import { onMounted, defineProps } from "vue";
+import { onMounted } from "vue";
 import { useObservable } from "@vueuse/rxjs";
 
-const props = defineProps<{ class?: string }>();
-const rootClasses = `relative max-w-md mx-auto md:max-w-2xl mt-6 min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-16 px-6 ${props.class || ""}`;
+
+const rootClasses = `relative max-w-md mx-auto md:max-w-2xl mt-6 min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-16 px-6`;
 
 const query = useObservable(User.query$);
 

@@ -1,24 +1,23 @@
 <script setup lang="ts">
-import UserStatistics from "./components/user-statistics.ce.vue";
-import UserHeader from "./components/user-header.ce.vue";
-import UserAvatar from "./components/user-avatar.ce.vue";
-import UserName from "./components/user-name.ce.vue";
-import UserDetails from "./components/user-details.ce.vue";
-import UserBio from "./components/user-bio.ce.vue";
-import UserCountry from "./components/user-country.ce.vue";
-import UserCard from "./components/user-card.ce.vue";
-import UserFetchButton from "./components/user-fetch-button.ce.vue";
+import UserStatistics from "./components/user-statistics.vue";
+import UserHeader from "./components/user-header.vue";
+import UserAvatar from "./components/user-avatar.vue";
+import UserName from "./components/user-name.vue";
+import UserDetails from "./components/user-details.vue";
+import UserBio from "./components/user-bio.vue";
+import UserCountry from "./components/user-country.vue";
+import UserCard from "./components/user-card.vue";
+import UserFetchButton from "./components/user-fetch-button.vue";
+import { reactive } from "vue";
+import computeHighlight from "./highlight/function";
 
-// variant="filled" | outline
+const state = reactive({ hover: false, error: true, dashed: false });
 
-// @user-fetched="print"
-/*function print(user: any) {
-  console.log('Listen @user-fetched event:', user);
-}*/
+const highlight = computeHighlight(state);
 
 </script>
 <template>
-  <user-card>
+  <user-card :class="highlight">
     <user-header>
       <user-avatar></user-avatar>
     </user-header>
